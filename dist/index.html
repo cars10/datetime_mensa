@@ -1,1 +1,48 @@
-<html><head><title>New Tab</title><link rel="stylesheet" type="text/css" href="style.css"></head><body><div class="container"><div class="datetime"><div class="time text-center"><span id="hours"></span>:<span id="minutes"></span></div><div class="date text-center"><span id="weekday"></span>, <span id="day"></span>. <span id="month"></span> <span id="year"></span></div></div><hr class="hr_bold"/><form action="https://www.google.com/search" class="text-center search_form"><input type="text" name="q" class="search_bar" placeholder="Google Suche..." autofocus/><button type="submit" class="submit_button" onclick="disableSubmitButton(this)">Suche</button></form><hr class="hr_bold"/><div id="mensa"></div><div class="text-center"><a class="github_link" href="http://localhost:8001/">Github</a></div></div><script type="text/javascript" src="script.js"></script><script type="text/javascript">// set time/dateupdateTime();window.setInterval(updateTime, 5000);/** * Load and parse meal plan. * - original xml is taken from http://www.studierendenwerk-koblenz.de/api/speiseplan/speiseplan.xml * - we need to serve it ourself because fuck CORS (or you disable every security setting your browser has..) */xhr('http://localhost:8001/speiseplan.xml', 'GET', buildMensaPlan);</script></body></html>
+<html>
+<head>
+	<title>New Tab</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<script src="script.js"></script>
+</head>
+<body>
+<div class="container">
+	<div class="datetime">
+		<div class="time text-center">
+			<span id="hours"></span>:<span id="minutes"></span>
+		</div>
+
+		<div class="date text-center">
+			<span id="weekday"></span>, <span id="day"></span>. <span id="month"></span> <span id="year"></span>
+		</div>
+	</div>
+
+	<hr class="hr_bold"/>
+
+	<form action="https://www.google.com/search" class="text-center search_form">
+		<input type="text" name="q" class="search_bar" placeholder="Google Suche..." autofocus />
+		<button type="submit" class="submit_button" onclick="disableSubmitButton(this)">Suche</button>
+	</form>
+
+	<hr class="hr_bold"/>
+
+	<div id="mensa"></div>
+
+  <div class="text-center">
+		<a class="github_link" href="http://localhost:8001/">Github</a>
+	</div>
+</div>
+
+<script type="text/javascript">
+	// set time/date
+	updateTime();
+	window.setInterval(updateTime, 5000);
+
+	/**
+	 * Load and parse meal plan.
+	 * - original xml is taken from http://www.studierendenwerk-koblenz.de/api/speiseplan/speiseplan.xml
+	 * - we need to serve it ourself because fuck CORS (or you disable every security setting your browser has..)
+	 */
+	xhr('http://localhost:8001/speiseplan.xml', 'GET', buildMensaPlan);
+</script>
+</body>
+</html>
