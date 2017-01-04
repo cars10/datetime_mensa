@@ -10,6 +10,7 @@
 You need to:
 1. host the assets
 2. pull the `speiseplan.xml`
+3. fix the links to the xml (see `index.html`)
 
 ### Host the assets
 All you need is a static asset server, for example nginx or similiar. To host locally you could use something like the python http server:
