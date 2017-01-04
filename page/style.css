@@ -1,0 +1,101 @@
+/**
+* Colors
+* - background: #273238;
+* - lighter blue: #3a5767;
+* - red button hover: #cc2020;
+* - white fonts: #fffffffff;
+* - grey fonts: #999999999;
+*/
+
+* {
+	font-family: Sans-serif;
+	font-size: 1em;
+    border-radius: 2px;
+}
+
+body {
+	background-color: #273238;
+	color: #ffffff;
+	padding-top: 90px;
+}
+
+.container {
+	width: 80%;
+	margin: auto;
+}
+
+.text-center {
+	text-align: center;
+}
+
+.search_form {
+	margin-top: 30px;
+}
+
+.search_bar {
+	width: 450px;
+	height: 40px;
+	border: none;
+	margin-bottom: 15px;
+	padding-left: 15px;
+	outline-color: #f00;
+	outline: none;
+}
+
+.submit_button {
+	height: 40px;
+	width: 100px;
+	background-color: #ffffff;
+	border: none;
+}
+
+.submit_button:hover:enabled {
+	background-color: #cc2020;
+	color: #ffffff;
+}
+
+.hr_bold {
+	border: 2px solid #3a5767;
+}
+
+.time {
+	font-size: 8em;
+}
+
+.date {
+	color: rgba(255,255,255,0.6);
+	font-size: 2em;
+}
+
+.datetime {
+	margin: 100px 0 35px 0;
+}
+
+.mensa_day__wrapper {
+    vertical-align: top;
+	width: 20%;
+	display: inline-block;
+}
+
+.mensa_day {
+	display: inline-block;
+	padding: 15px;
+	color: #999999;
+}
+
+.mensa_day--today {
+	color: #fff !important;
+}
+
+.mensa_food {
+	min-height: 60px;
+	border-bottom: 1px solid #3a5767;
+	margin-bottom: 8px;
+}
+
+.mensa_day__title {
+	color: #3a5767;
+	font-weight: bold;
+	font-size: 2.5em;
+	padding-left: 15px;
+}
