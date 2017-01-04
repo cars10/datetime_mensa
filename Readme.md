@@ -1,4 +1,6 @@
 # Page with datetime and Uni-Koblenz Mensaplan
+![Screenshot of the tab](screenshot.jpg?raw=true "Screenshot")
+
 ## Use as "new tab"-page in chrome
 * Download an addon to change the new tab url, for example [New Tab Redirect](https://chrome.google.com/webstore/detail/new-tab-redirect/icpgjfneehieebagbmdbhnlpiopdcmna?hl=de)
 * Change the url to point to `https://cars10.tech/mensa_tab`
