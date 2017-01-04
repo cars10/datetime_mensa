@@ -8,6 +8,7 @@
 
 ## Hosting manually
 You need to:
+
 1. host the assets
 2. pull the `speiseplan.xml`
 3. fix the links to the xml (see `index.html`)
