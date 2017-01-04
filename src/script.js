@@ -4,7 +4,7 @@ var weekdays = ["Sonntag", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Frei
 var short_weekdays = ["Mo", "Di", "Mi", "Do", "Fr"];
 
 /**
- * UpdateTime() 
+ * UpdateTime()
  *
  * Takes the current date apart and sets the contents into their corresponding DOM elements.
  */
@@ -38,8 +38,8 @@ function updateTime() {
  * @param btn {Object} - the Button that got clicked
  */
 function disableSubmitButton(btn) {
-	btn.form.submit(); 
-	btn.disabled = true; 
+	btn.form.submit();
+	btn.disabled = true;
 	btn.innerHTML = 'Suche ...';
 }
 
@@ -51,7 +51,7 @@ function disableSubmitButton(btn) {
  *
  * @param url {String} - the URL to call
  * @param method {String} - HTTP Method to use (GET/POST)
- * @param sucess {Function} - callback function that gets executed on success
+ * @param success {Function} - callback function that gets executed on success
  */
 function xhr(url, method, success) {
 	var xhr = new XMLHttpRequest();
@@ -60,10 +60,10 @@ function xhr(url, method, success) {
 
 	xhr.onreadystatechange = function () {
 		if (xhr.readyState == 4) {
-			  success(xhr.responseText); 
-		} 
-	}	
-	// TODO handle errors?	
+			  success(xhr.responseText);
+		}
+	}
+	// TODO handle errors?
 };
 
 /**
@@ -128,7 +128,7 @@ function buildMensaDay(day, dayname) {
 	// append extra class if date is today, used for different font color
 	if (datesEqual(now, date) == true) {
 		mensa_day_div.className += ' mensa_day--today'
-	} 
+	}
 
 	// append foods to mensa_day_div
 	mensa_day_div.appendChild(buildMensaMenu(menu_1.textContent));
@@ -141,7 +141,7 @@ function buildMensaDay(day, dayname) {
 	// append title and menus to day day_wrapper
 	day_wrapper.appendChild(title);
 	day_wrapper.appendChild(mensa_day_div);
-	
+
 	return day_wrapper;
 }
 
@@ -164,13 +164,13 @@ function buildMensaMenu(food_text) {
  * datesEqual(date1, date2)
  *
  * Checks if two given dates are equal based on year, month and day. FU javascript!
- * 
+ *
  * @param date1 {Date} - the first date
  * @param date2 {Date} - the second date
- * @return {Bool} true if equal
+ * @return {Boolean} true if equal
  */
 function datesEqual(date1, date2) {
-	return (date1.getUTCFullYear() == date2.getUTCFullYear()) && 
-	(date1.getUTCMonth() == date2.getUTCMonth()) 
+	return (date1.getUTCFullYear() == date2.getUTCFullYear()) &&
+	(date1.getUTCMonth() == date2.getUTCMonth())
 	&& (date1.getDate() == date2.getDate())
 }
