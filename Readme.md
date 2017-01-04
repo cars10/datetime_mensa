@@ -3,7 +3,7 @@
 
 ## Use as "new tab"-page in chrome
 * Download an addon to change the new tab url, for example [New Tab Redirect](https://chrome.google.com/webstore/detail/new-tab-redirect/icpgjfneehieebagbmdbhnlpiopdcmna?hl=de)
-* Change the url to point to `https://cars10.tech/mensa_tab`
+* Change the url to point to `https://datetimemensa.cars10k.de`
 * .. or host yourself
 
 ## Hosting manually
