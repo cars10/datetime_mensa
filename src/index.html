@@ -42,7 +42,7 @@
 	 * - original xml is taken from http://www.studierendenwerk-koblenz.de/api/speiseplan/speiseplan.xml
 	 * - we need to serve it ourself because fuck CORS (or you disable every security setting your browser has..)
 	 */
-	xhr('http://localhost:8001/speiseplan.xml', 'GET', buildMensaPlan);
+	xhr('https://datetimemensa.cars10k.de/speiseplan.xml', 'GET', buildMensaPlan);
 </script>
 </body>
 </html>
