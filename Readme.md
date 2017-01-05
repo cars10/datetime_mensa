@@ -1,7 +1,7 @@
 # Page with datetime and Uni-Koblenz Mensaplan
 ![Screenshot of the tab](screenshot.jpg?raw=true "Screenshot")
 
-The plan is taken from `https://datetimemensa.cars10k.de/speiseplan.xml`.
+The plan is taken from `http://www.studierendenwerk-koblenz.de/api/speiseplan/speiseplan.xml`.
 
 ## Use as "new tab"-page in chrome
 * Download an addon to change the new tab url, for example [New Tab Redirect](https://chrome.google.com/webstore/detail/new-tab-redirect/icpgjfneehieebagbmdbhnlpiopdcmna?hl=de)
