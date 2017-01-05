@@ -19,8 +19,9 @@ You need to:
 All you need is a static asset server, for example nginx or similiar. To host locally you could use something like the python http server:
 ```
 # will start a local fileserver on port 8001
+cd dist/
 python -m http.server 8001
 ```
 ### Pull the plan
-You can use the provided `pull_plan.sh` to pull the `speiseplan.xml` file.
-I did setup a cronjob that runs every 30min between `9:00am` and `11:00am` because thats the timeframe where the plan usally gets updated.
+You can use the provided `pull_plan.sh` script to pull the `speiseplan.xml` file.
+On my server i have setup a cronjob that runs every 30min between `9:00am` and `11:00am` because thats the timeframe where the plan usally gets updated.
