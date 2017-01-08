@@ -2,6 +2,7 @@
 var calendarmonths = ["Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember"]
 var weekdays = ["Sonntag", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag"];
 var short_weekdays = ["Mo", "Di", "Mi", "Do", "Fr"];
+var today = new Date;
 
 /**
  * UpdateTime()
@@ -78,7 +79,13 @@ function buildMensaPlan(response_xml) {
 	var doc = parser.parseFromString(response_xml, 'text/xml')
 	var dates = doc.getElementsByTagName('Datum');
 	var dates_array = [].slice.call(dates); // convert HTMLCollection to Array
-	dates_array = dates_array.slice(0, 5); // only take first 5 days
+	var weekday = today.getUTCDay();
+	if (weekday == 0 || weekday == 6) {
+		// its the weekend, show the plan for the next week already
+		dates_array = dates_array.slice(5, 10); // take days 5 - 10
+	} else {
+		dates_array = dates_array.slice(0, 5); // only take first 5 days
+	}
 
 	var mensa_div = document.querySelector('#mensa');
 
@@ -100,12 +107,12 @@ function buildMensaPlan(response_xml) {
 function buildMensaDay(day, dayname) {
 	// parse menus
 	var menu_1 = day.getElementsByTagName('menu1')[0]; // "Menü 1"
-	// var menu_a = day.getElementsByTagName('menua')[0]; // "Abendmensa", currently unused
-	// var menu_b = day.getElementsByTagName('menub')[0]; // "Bistro", currently unused
-	var menu_d = day.getElementsByTagName('menud')[0]; // "Vital"
-	var menu_e = day.getElementsByTagName('menue')[0]; // "Extratheke"
 	var menu_v = day.getElementsByTagName('menuv')[0]; // "Vegetarisch"
-	// var menu_vegan = day.getElementsByTagName('menuvegan')[0]; // "Vegan", currently unused
+	var menu_vegan = day.getElementsByTagName('menuvegan')[0]; // "Vegan", currently unused
+	var menu_e = day.getElementsByTagName('menue')[0]; // "Extratheke"
+	var menu_d = day.getElementsByTagName('menud')[0]; // "Vital"
+	var menu_b = day.getElementsByTagName('menub')[0]; // "Bistro", currently unused
+	var menu_a = day.getElementsByTagName('menua')[0]; // "Abendmensa", currently unused
 
 	var date = day.innerHTML.substring(0, 10); // date string like "2017-01-03"
 
@@ -114,8 +121,6 @@ function buildMensaDay(day, dayname) {
 	var seconds = miliseconds / 1000;
 	var date = new Date(0); // 1970.01.01
 	date.setUTCSeconds(seconds);
-
-	var now = new Date;
 
 	// build container and food warpper
 	var day_wrapper = document.createElement("div");
@@ -126,15 +131,19 @@ function buildMensaDay(day, dayname) {
 	mensa_day_div.className = 'mensa_day';
 
 	// append extra class if date is today, used for different font color
-	if (datesEqual(now, date) == true) {
+	if (datesEqual(today, date) == true) {
+		title.className += ' mensa_day__title--today';
 		mensa_day_div.className += ' mensa_day--today'
 	}
 
 	// append foods to mensa_day_div
-	mensa_day_div.appendChild(buildMensaMenu(menu_1.textContent));
-	mensa_day_div.appendChild(buildMensaMenu(menu_v.textContent));
-	mensa_day_div.appendChild(buildMensaMenu(menu_e.textContent));
-	mensa_day_div.appendChild(buildMensaMenu(menu_d.textContent));
+	mensa_day_div.appendChild(buildMensaMenu(menu_1));
+	mensa_day_div.appendChild(buildMensaMenu(menu_v));
+	mensa_day_div.appendChild(buildMensaMenu(menu_vegan));
+	mensa_day_div.appendChild(buildMensaMenu(menu_e));
+	mensa_day_div.appendChild(buildMensaMenu(menu_d));
+	mensa_day_div.appendChild(buildMensaMenu(menu_b));
+	mensa_day_div.appendChild(buildMensaMenu(menu_a));
 
 	title.innerHTML = dayname; // set weekday
 
@@ -150,13 +159,15 @@ function buildMensaDay(day, dayname) {
  *
  * Builds a div for one menu with its text
  *
- * @param food_text {String} - Whats on the menu?
+ * @param food_text_node {Object} - Whats on the menu?
  * @return div {Object} - one menu div
  */
-function buildMensaMenu(food_text) {
+function buildMensaMenu(food_text_node) {
 	var div = document.createElement("div");
 	div.className = 'mensa_food';
-	div.innerHTML = food_text;
+	if (food_text_node != undefined && food_text_node.textContent != undefined) {
+		div.innerHTML = food_text_node.textContent;
+	}
 	return div;
 }
 
