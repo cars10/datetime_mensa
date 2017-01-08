@@ -26,5 +26,11 @@ python -m http.server 8001
 You can use the provided `pull_plan.sh` script to pull the `speiseplan.xml` file.
 On my server i have setup a cronjob that runs every 30min between `9:00am` and `11:00am` because thats the timeframe where the plan usally gets updated.
 
-# TODO
-* add Bistro, Abendmensa and Vegan Menus. Feel free to make a PR for that
+### Fix the links
+`src/index.html` contains a link to the xml that is beeing pulled (see the script tag at the bottom). If you want to host manually you should change that to match your server.
+
+Recreate the optimized files after saving the url:
+```
+npm install
+npm run deploy
+```
