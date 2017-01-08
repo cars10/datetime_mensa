@@ -1,0 +1,27 @@
+{
+  "name": "datetime_mensa",
+  "version": "0.0.1",
+  "description": "Page with datetime and Uni-Koblenz Mensaplan",
+  "main": "src/index.html",
+  "scripts": {
+    "deploy": "npm run deploy-html && npm run deploy-css && npm run deploy-js",
+    "deploy-html": "node_modules/html-minify/bin/htmlminify -o dist/index.html src/index.html",
+    "deploy-css": "node_modules/clean-css/bin/cleancss -o dist/style.css src/style.css && gzip -f dist/style.css",
+    "deploy-js": "node_modules/uglify-js/bin/uglifyjs -o dist/script.js src/script.js && gzip -f dist/script.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cars10/datetime_mensa.git"
+  },
+  "author": "Carsten König",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cars10/datetime_mensa/issues"
+  },
+  "homepage": "https://datetimemensa.cars10k.de/",
+  "devDependencies": {
+    "clean-css": "^3.4.23",
+    "html-minify": "^0.3.2",
+    "uglify-js": "^2.7.5"
+  }
+}
