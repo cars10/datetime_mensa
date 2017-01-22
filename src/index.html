@@ -7,7 +7,7 @@
 <body>
 <div class="container">
 	<div class="datetime">
-		<div class="time text-center">
+		<div class="font-size-8 text-center">
 			<span id="hours"></span>:<span id="minutes"></span>
 		</div>
 
@@ -16,17 +16,86 @@
 		</div>
 	</div>
 
-	<form action="https://www.google.com/search" class="text-center search_form">
+	<form action="https://www.google.com/search" class="text-center">
 		<input type="text" name="q" class="search_bar" placeholder="Google Suche..." autofocus />
 		<button type="submit" class="submit_button" onclick="disableSubmitButton(this)">Suche</button>
 	</form>
 
 	<hr class="hr_bold"/>
 
-	<div id="mensa"></div>
+	<table class="mensaplan">
+		<thead>
+			<tr class="weekdays">
+				<th class="daterange"><span id="start_date"></span> -<br/><span id="end_date"></span></th>
+				<th class="weekday" id="weekday_1">Montag</th>
+				<th class="weekday" id="weekday_2">Dienstag</th>
+				<th class="weekday" id="weekday_3">Mittwoch</th>
+				<th class="weekday" id="weekday_4">Donnerstag</th>
+				<th class="weekday" id="weekday_5">Freitag</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>Menü 1</td>
+				<td id="menu1_1"></td>
+				<td id="menu1_2"></td>
+				<td id="menu1_3"></td>
+				<td id="menu1_4"></td>
+				<td id="menu1_5"></td>
+			</tr>
+			<tr>
+				<td>Vegetarisch</td>
+				<td id="menuv_1"></td>
+				<td id="menuv_2"></td>
+				<td id="menuv_3"></td>
+				<td id="menuv_4"></td>
+				<td id="menuv_5"></td>
+			</tr>
+			<tr>
+				<td>Vegan</td>
+				<td id="menuvegan_1"></td>
+				<td id="menuvegan_2"></td>
+				<td id="menuvegan_3"></td>
+				<td id="menuvegan_4"></td>
+				<td id="menuvegan_5"></td>
+			</tr>
+			<tr>
+				<td>Extratheke</td>
+				<td id="menue_1"></td>
+				<td id="menue_2"></td>
+				<td id="menue_3"></td>
+				<td id="menue_4"></td>
+				<td id="menue_5"></td>
+			</tr>
+			<tr>
+				<td>Vital</td>
+				<td id="menud_1"></td>
+				<td id="menud_2"></td>
+				<td id="menud_3"></td>
+				<td id="menud_4"></td>
+				<td id="menud_5"></td>
+			</tr>
+			<tr>
+				<td>Bistro</td>
+				<td id="menub_1"></td>
+				<td id="menub_2"></td>
+				<td id="menub_3"></td>
+				<td id="menub_4"></td>
+				<td id="menub_5"></td>
+			</tr>
+			<tr>
+				<td>Abend</td>
+				<td id="menua_1"></td>
+				<td id="menua_2"></td>
+				<td id="menua_3"></td>
+				<td id="menua_4"></td>
+				<td id="menua_5"></td>
+			</tr>
+		</tbody>
+	</table>
 
-  <div class="text-center">
-		<a class="github_link" href="https://github.com/cars10/datetime_mensa">Github</a>
+  <div class="text-center mt-20">
+		<a href="https://github.com/cars10/datetime_mensa">Github</a>
 	</div>
 </div>
 
@@ -40,7 +109,7 @@
 	 * - original xml is taken from http://www.studierendenwerk-koblenz.de/api/speiseplan/speiseplan.xml
 	 * - we need to serve it ourself because fuck CORS (or you disable every security setting your browser has..)
 	 */
-	xhr('https://datetimemensa.cars10k.de/speiseplan.xml', 'GET', buildMensaPlan);
+	xhr('http://localhost:8000/speiseplan.xml', 'GET', buildMensaPlan);
 </script>
 </body>
 </html>

@@ -1,3 +1,5 @@
 src/speiseplan.xml
 dist/speiseplan.xml
+dist/script.js
+dist/style.css
 node_modules

@@ -1,7 +1,6 @@
 // Variables we need to display date & time
 var calendarmonths = ["Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember"]
 var weekdays = ["Sonntag", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag"];
-var short_weekdays = ["Mo", "Di", "Mi", "Do", "Fr"];
 var today = new Date;
 
 /**
@@ -44,7 +43,6 @@ function disableSubmitButton(btn) {
 	btn.innerHTML = 'Suche ...';
 }
 
-
 /**
  * xhr(url, method, success)
  *
@@ -64,7 +62,7 @@ function xhr(url, method, success) {
 			  success(xhr.responseText);
 		}
 	}
-	// TODO handle errors?
+	// TODO handle errors!
 };
 
 /**
@@ -87,71 +85,61 @@ function buildMensaPlan(response_xml) {
 		dates_array = dates_array.slice(0, 5); // only take first 5 days
 	}
 
-	var mensa_div = document.querySelector('#mensa');
-
 	for (var i = 0; i < dates_array.length; i++) {
-		var mensa_day = buildMensaDay(dates_array[i], short_weekdays[i]);
-	    mensa_div.appendChild(mensa_day);
+		buildMensaDay(dates_array[i]);
 	}
+
+	document.querySelector("#start_date").innerHTML = dates_array[0].innerHTML.substring(0, 10);
+	document.querySelector("#end_date").innerHTML = dates_array[dates_array.length -1].innerHTML.substring(0, 10);
 }
 
 /**
  * buildMensaDay(day, dayname)
  *
- * Builds a single mensa day with a given +day+ object and an abbr. weekday
+ * Builds a single mensa day with a given +day+ object
  *
  * @param day {Object} - on day element from the xml
- * @param dayname {String} - abbr day name that gets displayed ontop of the plan
- * @return day_wrapper - DOM element representing one day
  */
-function buildMensaDay(day, dayname) {
+function buildMensaDay(day) {
 	// parse menus
-	var menu_1 = day.getElementsByTagName('menu1')[0]; // "Menü 1"
-	var menu_v = day.getElementsByTagName('menuv')[0]; // "Vegetarisch"
-	var menu_vegan = day.getElementsByTagName('menuvegan')[0]; // "Vegan", currently unused
-	var menu_e = day.getElementsByTagName('menue')[0]; // "Extratheke"
-	var menu_d = day.getElementsByTagName('menud')[0]; // "Vital"
-	var menu_b = day.getElementsByTagName('menub')[0]; // "Bistro", currently unused
-	var menu_a = day.getElementsByTagName('menua')[0]; // "Abendmensa", currently unused
+	var menu1 = day.getElementsByTagName('menu1')[0]; // "Menü 1"
+	var menuv = day.getElementsByTagName('menuv')[0]; // "Vegetarisch"
+	var menuvegan = day.getElementsByTagName('menuvegan')[0]; // "Vegan"
+	var menue = day.getElementsByTagName('menue')[0]; // "Extratheke"
+	var menud = day.getElementsByTagName('menud')[0]; // "Vital"
+	var menub = day.getElementsByTagName('menub')[0]; // "Bistro"
+	var menua = day.getElementsByTagName('menua')[0]; // "Abendmensa"
 
-	var date = day.innerHTML.substring(0, 10); // date string like "2017-01-03"
+	var datestring = day.innerHTML.substring(0, 10); // date string like "2017-01-03"
 
 	// parse date
-	var miliseconds = Date.parse(date);
+	var miliseconds = Date.parse(datestring);
 	var seconds = miliseconds / 1000;
 	var date = new Date(0); // 1970.01.01
 	date.setUTCSeconds(seconds);
 
-	// build container and food warpper
-	var day_wrapper = document.createElement("div");
-	day_wrapper.className = 'mensa_day__wrapper';
-	var title = document.createElement("div");
-	title.className = 'mensa_day__title';
-	var mensa_day_div = document.createElement("div");
-	mensa_day_div.className = 'mensa_day';
+	var day_weekday = date.getDay();
+
+	// set text
+	document.querySelector("#menu1_" + day_weekday).innerHTML = getMensaMenu(menu1);
+	document.querySelector("#menuv_" + day_weekday).innerHTML = getMensaMenu(menuv);
+	document.querySelector("#menuvegan_" + day_weekday).innerHTML = getMensaMenu(menuvegan);
+	document.querySelector("#menue_" + day_weekday).innerHTML = getMensaMenu(menue);
+	document.querySelector("#menud_" + day_weekday).innerHTML = getMensaMenu(menud);
+	document.querySelector("#menub_" + day_weekday).innerHTML = getMensaMenu(menub);
+	document.querySelector("#menua_" + day_weekday).innerHTML = getMensaMenu(menua);
 
 	// append extra class if date is today, used for different font color
 	if (datesEqual(today, date) == true) {
-		title.className += ' mensa_day__title--today';
-		mensa_day_div.className += ' mensa_day--today'
+		document.querySelector("#weekday_" + day_weekday).className += " white";
+		document.querySelector("#menu1_" + day_weekday).className += " white";
+		document.querySelector("#menuv_" + day_weekday).className += " white";
+		document.querySelector("#menuvegan_" + day_weekday).className += " white";
+		document.querySelector("#menue_" + day_weekday).className += " white";
+		document.querySelector("#menud_" + day_weekday).className += " white";
+		document.querySelector("#menub_" + day_weekday).className += " white";
+		document.querySelector("#menua_" + day_weekday).className += " white";
 	}
-
-	// append foods to mensa_day_div
-	mensa_day_div.appendChild(buildMensaMenu(menu_1));
-	mensa_day_div.appendChild(buildMensaMenu(menu_v));
-	mensa_day_div.appendChild(buildMensaMenu(menu_vegan));
-	mensa_day_div.appendChild(buildMensaMenu(menu_e));
-	mensa_day_div.appendChild(buildMensaMenu(menu_d));
-	mensa_day_div.appendChild(buildMensaMenu(menu_b));
-	mensa_day_div.appendChild(buildMensaMenu(menu_a));
-
-	title.innerHTML = dayname; // set weekday
-
-	// append title and menus to day day_wrapper
-	day_wrapper.appendChild(title);
-	day_wrapper.appendChild(mensa_day_div);
-
-	return day_wrapper;
 }
 
 /**
@@ -162,13 +150,10 @@ function buildMensaDay(day, dayname) {
  * @param food_text_node {Object} - Whats on the menu?
  * @return div {Object} - one menu div
  */
-function buildMensaMenu(food_text_node) {
-	var div = document.createElement("div");
-	div.className = 'mensa_food';
+function getMensaMenu(food_text_node) {
 	if (food_text_node != undefined && food_text_node.textContent != undefined) {
-		div.innerHTML = food_text_node.textContent;
+	  return food_text_node.textContent;
 	}
-	return div;
 }
 
 /**

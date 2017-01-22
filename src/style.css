@@ -1,26 +1,16 @@
-/**
-* Colors
-* - background: #273238;
-* - lighter blue: #3a5767;
-* - red button hover: #cc2020;
-* - white fonts: #fffffffff;
-* - grey fonts: #999999999;
-*/
-
 * {
 	font-family: Sans-serif;
 	font-size: 1em;
-    border-radius: 2px;
+  border-radius: 2px;
 }
 
 body {
 	background-color: #273238;
 	color: #ffffff;
-	padding-top: 65px;
 }
 
 .container {
-	width: 90%;
+	width: 98%;
 	margin: auto;
 }
 
@@ -28,8 +18,8 @@ body {
 	text-align: center;
 }
 
-.search_form {
-	margin-top: 30px;
+.mt-20 {
+	margin-top: 20px;
 }
 
 .search_bar {
@@ -59,7 +49,7 @@ body {
 	border: 1px solid #3a5767;
 }
 
-.time {
+.font-size-8 {
 	font-size: 8em;
 }
 
@@ -69,43 +59,45 @@ body {
 }
 
 .datetime {
-	margin: 100px 0 35px 0;
+	margin: 160px 0 30px 0;
 }
 
-.mensa_day__wrapper {
-    vertical-align: top;
-	width: 20%;
-	display: inline-block;
+.weekdays > th.weekday {
+	color: #3a5767;
+	font-weight: 700;
+	font-size: 2.2em;
+	text-align: left;
 }
 
-.mensa_day {
-	display: inline-block;
-	padding: 15px;
-	color: #999999;
+table.mensaplan {
+	border-collapse: separate;
+	border-spacing: 10px 0;
+	width: 100%;
 }
 
-.mensa_day--today {
+table.mensaplan td {
+	height: 4em;
+	border-bottom: 1px solid #3a5767;
+	padding: 2px 5px;
+	color: #BBB;
+}
+
+table.mensaplan tr td:first-child {
+	color: #999;
+}
+
+.daterange {
+	text-align: left;
+	color: #999;
+	font-size: 0.8em;
+	padding: 2px 5px;
+}
+
+.white {
 	color: #fff !important;
 }
 
-.mensa_food {
-	min-height: 60px;
-	border-bottom: 1px solid #3a5767;
-	margin-bottom: 8px;
-}
-
-.mensa_day__title {
-	color: #3a5767;
-	font-weight: bold;
-	font-size: 2.5em;
-	padding-left: 15px;
-}
-
-.mensa_day__title--today {
-	color: #ffffff;
-}
-
-.github_link {
+a {
 	color: #3a5767;
 	text-decoration: none;
 }
