@@ -1,5 +1,5 @@
 # Page with datetime and Uni-Koblenz Mensaplan
-![Screenshot of the tab](screenshot.jpg?raw=true "Screenshot")
+![Screenshot of the tab](screenshot.png?raw=true "Screenshot")
 
 The plan is taken from `http://www.studierendenwerk-koblenz.de/api/speiseplan/speiseplan.xml`.
 
