@@ -67,6 +67,7 @@ body {
 	font-weight: 700;
 	font-size: 2.2em;
 	text-align: left;
+	width: 18%;
 }
 
 table.mensaplan {
@@ -91,6 +92,7 @@ table.mensaplan tr td:first-child {
 	color: #999;
 	font-size: 0.8em;
 	padding: 2px 5px;
+	width: 10%;
 }
 
 .white {
