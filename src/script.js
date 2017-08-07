@@ -29,7 +29,7 @@ function updateTime() {
  *
  * Submits the buttons form and disables itself. Also replaces the buttontext to match the current "loading" state
  *
- * @param btn {Object} - the Button that got clicked
+ * @param {Object} btn - the Button that got clicked
  */
 function disableSubmitButton(btn) {
     btn.form.submit();
@@ -42,9 +42,9 @@ function disableSubmitButton(btn) {
  *
  * Executes a XMLHttpRequest of method +method+ to url +url+ and executes +success+ with the given response as param.
  *
- * @param url {String} - the URL to call
- * @param method {String} - HTTP Method to use (GET/POST)
- * @param success {Function} - callback function that gets executed on success
+ * @param {String} url - the URL to call
+ * @param {String} method - HTTP Method to use (GET/POST)
+ * @param {Function} success - callback function that gets executed on success
  */
 function xhr(url, method, success) {
     var xhr = new XMLHttpRequest();
@@ -64,7 +64,7 @@ function xhr(url, method, success) {
  *
  * Takes the xml of the mensa plan and builds the DOM elements to show it on the page.
  *
- * @param response_xml {String} - the xml response from the xhr call
+ * @param {String} response_xml - the xml response from the xhr call
  */
 function buildMensaPlan(response_xml) {
     var parser = new DOMParser();
@@ -92,7 +92,7 @@ function buildMensaPlan(response_xml) {
  *
  * Builds a single mensa day with a given +day+ object
  *
- * @param day {Object} - on day element from the xml
+ * @param {Object} day - on day element from the xml
  */
 function buildMensaDay(day) {
     // parse menus
@@ -145,6 +145,16 @@ function buildMensaDay(day) {
     }
 }
 
+/**
+ * setMenuText(selector, menu, zusatz)
+ * 
+ * Set +menu+ as content of +selector+
+ * Set +zusatz+ as title of +selector+
+ * 
+ * @param {String} selector 
+ * @param {Object} menu 
+ * @param {Object} zusatz 
+ */
 function setMenuText(selector, menu, zusatz) {
     var element = document.querySelector(selector);
     element.innerHTML = parseMensaMenu(menu, zusatz);
@@ -158,9 +168,9 @@ function setMenuText(selector, menu, zusatz) {
  *
  * Returns the text from the food text node, minus the annoying parenthesis with the "zusatze".
  *
- * @param food_text_node {Object} - Whats on the menu?
- * @param zusatz_text_node {Object} - Zusaetze for the menu
- * @return div {String} - The actual menu string
+ * @param {Object} food_text_node - Whats on the menu?
+ * @param {Object} zusatz_text_node - Zusaetze for the menu
+ * @return {String} - The actual menu string
  */
 function parseMensaMenu(food_text_node, zusatz_text_node) {
     if (food_text_node !== undefined && food_text_node.textContent !== undefined) {
@@ -200,7 +210,7 @@ function parseMensaMenu(food_text_node, zusatz_text_node) {
  * Replaces commas without a trailing whitespace with correct ones
  * Replaces commas with leading whitespace with correct ones
  * 
- * @param string  {String}
+ * @param {String} string 
  */
 function fixCommas(string) {
     return string.replace(/,(?!\s)/g, ', ').replace(/\s,/g, ',');
@@ -211,8 +221,8 @@ function fixCommas(string) {
  *
  * Checks if two given dates are equal based on year, month and day. FU javascript!
  *
- * @param date1 {Date} - the first date
- * @param date2 {Date} - the second date
+ * @param {Date} date1 - the first date
+ * @param {Date} date2 - the second date
  * @return {Boolean} true if equal
  */
 function datesEqual(date1, date2) {
