@@ -31,6 +31,12 @@ On my server i have setup a cronjob that runs every 30min between `9:00am` and `
 
 Recreate the optimized files after saving the url:
 ```
-npm install
-npm run deploy
+yarn install
+yarn build
+```
+
+### Docker
+
+```bash
+docker build -t datetimemensa .
 ```

@@ -4,10 +4,10 @@
   "description": "Page with datetime and Uni-Koblenz Mensaplan",
   "main": "src/index.html",
   "scripts": {
-    "deploy": "npm run deploy-html && npm run deploy-css && npm run deploy-js",
-    "deploy-html": "node_modules/html-minify/bin/htmlminify -o dist/index.html src/index.html",
-    "deploy-css": "node_modules/clean-css/bin/cleancss -o dist/style.css src/style.css && gzip -f dist/style.css",
-    "deploy-js": "node_modules/uglify-js/bin/uglifyjs -o dist/script.js src/script.js && gzip -f dist/script.js"
+    "build": "rm -rf dist/* && yarn build-html && yarn build-css && yarn build-js",
+    "build-html": "npx htmlminify -o dist/index.html src/index.html",
+    "build-css": "npx cleancss -o dist/style.css src/style.css",
+    "build-js": "npx uglifyjs -o dist/script.js src/script.js"
   },
   "repository": {
     "type": "git",
@@ -20,8 +20,8 @@
   },
   "homepage": "https://datetimemensa.cars10k.de/",
   "devDependencies": {
-    "clean-css": "^3.4.23",
+    "clean-css-cli": "^4.3.0",
     "html-minify": "^0.3.2",
-    "uglify-js": "^2.7.5"
+    "uglify-js": "^3.7.3"
   }
 }
