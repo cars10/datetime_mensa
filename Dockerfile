@@ -8,7 +8,7 @@ RUN yarn install
 COPY . .
 RUN yarn build
 
-FROM nginx:1.17.3-alpine
+FROM nginx:1.17.6-alpine
 COPY --from=builder /usr/src/app/dist /usr/share/nginx/html
 RUN rm /etc/nginx/conf.d/default.conf
 COPY server.conf /etc/nginx/conf.d/

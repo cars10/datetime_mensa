@@ -1,0 +1,12 @@
+version: '3.7'
+services:
+  datetime_mensa:
+    build: .
+    container_name: datetime_mensa
+    restart: always
+    networks:
+      - nginx
+networks:
+  nginx:
+    name: nginx
+
