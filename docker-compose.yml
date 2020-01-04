@@ -6,6 +6,8 @@ services:
     restart: always
     networks:
       - nginx
+    volumes:
+      - ./dist/speiseplan.xml:/usr/share/nginx/html/speiseplan.xml
 networks:
   nginx:
     name: nginx
